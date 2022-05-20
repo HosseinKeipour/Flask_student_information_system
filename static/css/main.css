@@ -1,7 +1,11 @@
-body{
-    background-color: aqua;
+body {
+    font-family: "Open Sans", sans-serif;
+    background-color: #e6e6e4;
+
 }
 
 table,th,td{
+    text-align: center;
     border: solid 2px;
+    table-layout: auto;
 }

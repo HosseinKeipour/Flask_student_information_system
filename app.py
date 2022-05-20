@@ -7,7 +7,7 @@ from datetime import datetime
 
 app = Flask(__name__)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///StudentsexitInfo.db' # /// 3 for relative path and 4 //// for absolute path
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///StudentsInfo.db' # /// 3 for relative path and 4 //// for absolute path
 db = SQLAlchemy(app)
 
 class ToDo(db.Model):  # ToDo is a table name that we will fill it here
@@ -26,8 +26,9 @@ def index():
     if request.method == 'POST':
         student_name = request.form['name']
         student_age = request.form['age']
-        student_group =request.form['group']
+        student_group = request.form['group']
         student_college_name = request.form['college_name']
+
         new_task = ToDo(name = student_name, age= student_age, group= student_group, college_name= student_college_name)
 
         try:
@@ -39,8 +40,6 @@ def index():
     else:
         tasks = ToDo.query.order_by(ToDo.name).all()
         return render_template('index.html',tasks= tasks)
-
-    # return render_template('index.html')
 
 @app.route('/delete/<int:id>')
 def delete(id):
